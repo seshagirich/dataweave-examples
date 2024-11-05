@@ -1,0 +1,55 @@
+1.
+
+  Question: Filter the products to include only those that are in stock (where stock is greater than 0) and create a new array of objects that contains only the id and product.
+  To solve this problem, you can use a combination of the filter and map functions.
+
+    
+  [
+    {
+        "id": 1,
+        "product": "Laptop",
+        "stock": 10
+    },
+    {
+        "id": 2,
+        "product": "Smartphone",
+        "stock": 0
+    },
+    {
+        "id": 3,
+        "product": "Coffee Maker",
+        "stock": 5
+    },
+    {
+        "id": 4,
+        "product": "Monitor",
+        "stock": 0
+    }
+]
+
+
+    script
+    ------------------------------
+    %dw 2.0
+output application/json
+---
+payload filter ((product) -> product.stock >0 )
+map ((item, index) -> {
+    "id": item.id,
+    "product": item.product
+} )
+
+
+
+    output
+    ------------------------
+    [
+  {
+    "id": 1,
+    "product": "Laptop"
+  },
+  {
+    "id": 3,
+    "product": "Coffee Maker"
+  }
+]
