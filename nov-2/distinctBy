@@ -1,0 +1,81 @@
+distinctBy
+---->  A function in DataWeave that creates a new array containing unique elements from an array based on a specified key or condition.
+
+===========================1======================
+
+Input
+-----------------
+[
+    {
+        "name": "Anil",
+        "Age": 20
+    },
+    {
+        "name": "Lohith",
+        "Age": 22
+    },
+    {
+        "name": "Seshu",
+        "Age": 29
+    },
+    {
+        "name": "Chelith",
+        "Age": 20
+    },
+    {
+        "name": "Anil",
+        "Age": 20
+    }
+]
+
+Script
+---------------------------
+%dw 2.0
+output application/json
+---
+payload distinctBy ((item, index) -> item.name)
+
+Output
+------------------------
+[
+  {
+    "name": "Anil",
+    "Age": 20
+  },
+  {
+    "name": "Lohith",
+    "Age": 22
+  },
+  {
+    "name": "Seshu",
+    "Age": 29
+  },
+  {
+    "name": "Chelith",
+    "Age": 20
+  }
+]
+
+
+========================1=============================
+%dw 2.0
+output application/json
+---
+payload distinctBy ((item, index) -> item.Age)
+
+output
+------------------------
+[
+  {
+    "name": "Anil",
+    "Age": 20
+  },
+  {
+    "name": "Lohith",
+    "Age": 22
+  },
+  {
+    "name": "Seshu",
+    "Age": 29
+  }
+]
