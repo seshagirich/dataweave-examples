@@ -1,0 +1,51 @@
+splitBy
+
+-----> A function in DataWeave that splits a string into an array of substrings based on a specified delimiter.
+
+
+============= 1 ==============
+
+Input
+------------------
+{
+    "A": "Seshagiri-Chennupati-India"
+}
+
+
+Script
+-----------------
+%dw 2.0
+output application/json
+---
+payload.A splitBy  ("-")
+
+
+Output
+--------------------
+[
+  "Seshagiri",
+  "Chennupati",
+  "India"
+]
+
+=================2=================
+
+Input
+---------------------------
+{
+    "A": "Seshagiri-Chennupati-India"
+}
+
+Script
+-------------------------------
+%dw 2.0
+output application/json
+---
+payload.A splitBy  ("-Chennupati-")
+
+Output
+------------------------------
+[
+  "Seshagiri",
+  "India"
+]
