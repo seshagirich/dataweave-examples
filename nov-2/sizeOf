@@ -1,1 +1,35 @@
+sizeOf 
+
+------  sizeOf function is used to determine the size or length of different types of data, such as arrays, strings, and objects. 
+
+
+
+input
+
+-> 3 ways's we need to pass inputs 
+--------------------------------------------
+[1,2,3,4,5] 
+
+[1,2,"Seshu",4,5,]
+
+["A","B","C","D","E"]
+
+
+script
+-------------------------------------------------
+%dw 2.0
+output application/json
+var allSchoolIds = payload.SchoolId
+---
+sizeOf(payload)  
+
+
+
+
+
+
+
+output
+---------------------------------------------
+5
 
