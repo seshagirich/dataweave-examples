@@ -1,0 +1,40 @@
+contains
+---> A function in DataWeave that checks if a specified value is present within a collection, such as an array or string.
+
+
+=====================1======================
+Input
+--------------
+{
+    "A": "Hello-world"
+}
+
+Script
+--------------------
+%dw 2.0
+output application/json
+---
+payload.A contains  ("Hello")
+
+
+Output
+------------
+true
+=======================2==========================
+
+Input
+--------------------
+{
+    "A": "Hello world!"
+}
+
+Script
+--------------
+%dw 2.0
+output application/json
+---
+payload.A contains  ("hello")
+
+Output 
+---------------
+false
