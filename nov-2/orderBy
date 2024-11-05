@@ -1,0 +1,106 @@
+orderBy
+--->  A function in DataWeave that sorts the elements of an array based on a specified key or criteria.
+
+
+
+
+================================1=======================
+Input
+-------------------------------
+[
+    {
+        "name": "Anil",
+        "Age": 29,
+        "city": "HYDERABAD"
+    },
+     {
+        "name": "Lohith",
+        "Age": 24,
+        "city": "GUNTUR"
+    },
+     {
+        "name": "Chelith",
+        "Age": 18,
+        "city": "Delhi"
+    }
+
+]
+
+Script
+----------------------------------
+%dw 2.0
+output application/json
+---
+payload orderBy ((item, index) -> item.Age)
+
+Output
+------------------------------------
+[
+  {
+    "name": "Chelith",
+    "Age": 18,
+    "city": "Delhi"
+  },
+  {
+    "name": "Lohith",
+    "Age": 24,
+    "city": "GUNTUR"
+  },
+  {
+    "name": "Anil",
+    "Age": 29,
+    "city": "HYDERABAD"
+  }
+]
+=================================2===========================
+%dw 2.0
+output application/json
+---
+payload orderBy ((item, index) -> item.name)
+
+Output
+------------------------------------------
+[
+  {
+    "name": "Anil",
+    "Age": 29,
+    "city": "HYDERABAD"
+  },
+  {
+    "name": "Chelith",
+    "Age": 18,
+    "city": "Delhi"
+  },
+  {
+    "name": "Lohith",
+    "Age": 24,
+    "city": "GUNTUR"
+  }
+]
+
+=================================3===============================
+%dw 2.0
+output application/json
+---
+
+
+Output
+------------------------------------
+[
+  {
+    "name": "Chelith",
+    "Age": 18,
+    "city": "Delhi"
+  },
+  {
+    "name": "Lohith",
+    "Age": 24,
+    "city": "GUNTUR"
+  },
+  {
+    "name": "Anil",
+    "Age": 29,
+    "city": "HYDERABAD"
+  }
+]
+payload orderBy ((item, index) -> item.city)
