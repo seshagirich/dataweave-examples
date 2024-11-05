@@ -1,0 +1,128 @@
+groupBy
+
+-->   A function in that organizes elements of an array into groups based on a specified key or condition.
+
+
+
+
+======================1=======================
+Input
+--------------------
+[
+    {
+        "name": "Anil",
+        "Age": 25,
+        "city": "HYDERABAD"
+    },
+     {
+        "name": "Lohith",
+        "Age": 24,
+        "city": "GUNTUR"
+    },
+     {
+        "name": "Chelith",
+        "Age": 22,
+        "city": "Delhi"
+    }
+
+]
+
+Script
+------------------------------
+%dw 2.0
+output application/json
+---
+payload groupBy ((item, index) -> item.name )
+
+
+Output
+----------------------------------
+{
+  "Anil": [
+    {
+      "name": "Anil",
+      "Age": 25,
+      "city": "HYDERABAD"
+    }
+  ],
+  "Lohith": [
+    {
+      "name": "Lohith",
+      "Age": 24,
+      "city": "GUNTUR"
+    }
+  ],
+  "Chelith": [
+    {
+      "name": "Chelith",
+      "Age": 22,
+      "city": "Delhi"
+    }
+  ]
+}
+
+
+===============================2=================================
+%dw 2.0
+output application/json
+---
+payload groupBy ((item, index) -> item.Age )
+
+Output
+---------------------------------
+{
+  "25": [
+    {
+      "name": "Anil",
+      "Age": 25,
+      "city": "HYDERABAD"
+    }
+  ],
+  "24": [
+    {
+      "name": "Lohith",
+      "Age": 24,
+      "city": "GUNTUR"
+    }
+  ],
+  "22": [
+    {
+      "name": "Chelith",
+      "Age": 22,
+      "city": "Delhi"
+    }
+  ]
+}
+
+==============================3===========================
+%dw 2.0
+output application/json
+---
+payload groupBy ((item, index) -> item.city )
+
+
+Output
+-----------------------------
+{
+  "HYDERABAD": [
+    {
+      "name": "Anil",
+      "Age": 25,
+      "city": "HYDERABAD"
+    }
+  ],
+  "GUNTUR": [
+    {
+      "name": "Lohith",
+      "Age": 24,
+      "city": "GUNTUR"
+    }
+  ],
+  "Delhi": [
+    {
+      "name": "Chelith",
+      "Age": 22,
+      "city": "Delhi"
+    }
+  ]
+}
