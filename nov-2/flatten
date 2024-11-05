@@ -1,0 +1,28 @@
+flatten
+---> A function in DataWeave that converts a nested array into a single-level array by iteration all the inner arrays.
+
+
+==================1=========================
+Input
+---------------------
+[1,2,3,"AB",4,5,"CD"]
+
+
+Script
+---------------------------
+%dw 2.0
+output application/json
+---
+flatten(payload)
+
+Output
+------------------------
+[
+  1,
+  2,
+  3,
+  "AB",
+  4,
+  5,
+  "CD"
+]
