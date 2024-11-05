@@ -1,0 +1,108 @@
+filter
+--->  A function that creates a new array by selecting elements from an existing array that meet a specified condition.
+
+
+Input
+--------------------
+[
+    {
+        "ID": 1010,
+        "Name": "Anil",
+        "University": "JNTUK",
+        "Address": {
+            "D-no": "1-22",
+            "City": "HYDERABAD",
+            "State": "TN"
+        }
+    },
+    {
+        "ID": 2020,
+        "Name": "Lohith",
+        "University": "JNTUH",
+        "Address": {
+            "D-no": "1-33",
+            "City": "GUNTUR",
+            "State": "AP"
+        }
+    },
+    {
+        "ID": 3030,
+        "Name": "Chelith",
+        "University": "OU",
+        "Address": {
+            "D-no": "1-44",
+            "City": "VIZAG",
+            "State": "AP"
+        }
+    },
+    {
+        "ID": 4040,
+        "Name": "John",
+        "University": "SV",
+        "Address": {
+            "D-no": "1-55",
+            "City": "GUNTUR",
+            "State": "TS"
+        }
+    }
+]
+
+
+
+Script
+-----------------------------
+
+%dw 2.0
+output application/json
+---
+payload filter ((item, index) -> item.Address.City == "GUNTUR")
+
+
+Output
+-----------------------------------
+[
+  {
+    "ID": 2020,
+    "Name": "Lohith",
+    "University": "JNTUH",
+    "Address": {
+      "D-no": "1-33",
+      "City": "GUNTUR",
+      "State": "AP"
+    }
+  },
+  {
+    "ID": 4040,
+    "Name": "John",
+    "University": "SV",
+    "Address": {
+      "D-no": "1-55",
+      "City": "GUNTUR",
+      "State": "TS"
+    }
+  }
+]
+
+
+====================2===========================
+%dw 2.0
+output application/json
+---
+payload filter ((item, index) -> item.Name =="Anil")
+
+
+
+Output
+-----------------
+[
+  {
+    "ID": 1010,
+    "Name": "Anil",
+    "University": "JNTUK",
+    "Address": {
+      "D-no": "1-22",
+      "City": "HYDERABAD",
+      "State": "TN"
+    }
+  }
+]
