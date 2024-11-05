@@ -1,0 +1,43 @@
+replace
+
+--> A function in DataWeave that replaces occurrences of a specified substring within a string with another substring.
+
+input
+------------------
+1{
+      "AB": "Hello---world"
+}
+or
+2{
+    "AB": "1,2,3,4"
+}
+or
+3{
+    "AB": ["a",2,4,3]
+}
+
+
+Script
+--------------
+1--->
+
+%dw 2.0
+output application/json
+---
+payload.AB replace  ("---") with (".") 
+2---> payload.AB replace  (",") with (".") 
+3---> payload.AB replace  ("A") with (".") 
+
+
+
+
+1.output
+---------------
+"Hello.world"
+
+2 output
+----------
+"1.2.3.4"
+
+3 output
+error
