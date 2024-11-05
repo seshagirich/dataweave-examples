@@ -1,0 +1,27 @@
+isEmpty
+
+-->  A function in DataWeave that checks if a value is empty.
+--> true if the value is empty (e.g., an empty array, an empty string, an empty object, or null). 
+--> false if the value contains elements, characters, or key-value pairs.
+
+
+input
+----------------
+1. "Seshu" 
+2.  "1452" 
+3.  "" 
+
+Script
+--------------------
+%dw 2.0
+output application/json
+---
+isEmpty(payload)
+
+
+
+Output
+---------------------
+1. false
+2. false
+3. true
