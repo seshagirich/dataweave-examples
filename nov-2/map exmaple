@@ -1,0 +1,43 @@
+input;
+[
+  {
+    "schoolName": "ABC",
+    "SchoolId": "3444444",
+    "AreaId": "2334555",
+    "Number": "100"
+  },
+  {
+    "schoolName": "ABC",
+    "SchoolId": "77655444",
+    "AreaId": "3444444",
+    "Number": "100"
+  },
+  {
+    "schoolName": "ABC",
+    "SchoolId": "456666",
+    "AreaId": "77655444",
+    "Number": "100"
+  },
+  {
+    "schoolName": "ABC",
+    "SchoolId": "2334555",
+    "AreaId": "555555",
+    "Number": "100"
+  }
+]
+output;
+Output Json: where AreaId not match with SchoolId in all JSON objects in array
+[
+  {
+    "schoolName": "ABC",
+    "SchoolId": "23445",
+    "AreaId": "555555",
+    "Number": "100"
+  }    
+]
+--script;
+%dw 2.0
+output application/json
+var allSchoolIds = payload.SchoolId
+---
+payload filter (not (allSchoolIds contains $.AreaId))
