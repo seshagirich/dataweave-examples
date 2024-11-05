@@ -1,0 +1,116 @@
+pluck
+---> A function in DataWeave that extracts the values of a specified key from an array of objects, returning them as a new array.
+
+
+$ --- values
+$$ --- keys
+$$$ --- index
+
+===================1=========================
+Input
+-------------------
+{
+    "ID": 1010,
+    "Name": "Seshu",
+    "City": "HYDERABAD",
+    "Company": "IBM"
+},
+
+script
+----------------
+%dw 2.0
+output application/json
+---
+payload pluck ((value, key, index) -> (key): value )
+
+Output
+--------------------
+[
+  {
+    "ID": 1010
+  },
+  {
+    "Name": "Seshu"
+  },
+  {
+    "City": "HYDERABAD"
+  },
+  {
+    "Company": "IBM"
+  }
+]
+
+
+=========================2=======================
+%dw 2.0
+output application/json
+---
+payload pluck ((value, key, index) -> value )
+
+output
+---------------------------------
+[
+  1010,
+  "Seshu",
+  "HYDERABAD",
+  "IBM"
+]
+========================3=====================
+%dw 2.0
+output application/json
+---
+payload pluck ((value, key, index) -> key )
+
+output
+--------------------------
+[
+  "ID",
+  "Name",
+  "City",
+  "Company"
+]
+
+===================== Simple way to write script ============================
+=============4====================
+%dw 2.0
+output application/json
+---
+payload pluck $
+
+output
+---------------------
+[
+  1010,
+  "Seshu",
+  "HYDERABAD",
+  "IBM"
+]
+==============================5=======================
+%dw 2.0
+output application/json
+---
+payload pluck $$
+
+Output
+----------------------
+[
+  "ID",
+  "Name",
+  "City",
+  "Company"
+]
+=========================6================= Index 
+%dw 2.0
+output application/json
+---
+payload pluck $$$
+
+
+output
+--------------------------
+[
+  0,
+  1,
+  2,
+  3
+]
