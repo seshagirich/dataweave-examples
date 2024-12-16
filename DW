@@ -1,1 +1,113 @@
-DW
+Example 1: Basic JSON to XML without name space
+To form XML data with namespaces from a JSON array of objects in Mule 4 using DataWeave, you can follow these steps. Here's an example to illustrate the process:
+[
+  {
+    "id": "1",
+    "name": "John",
+    "age": 30
+  },
+  {
+    "id": "2",
+    "name": "Jane",
+    "age": 25
+  }
+]
+
+script
+----------------------------
+%dw 2.0
+output application/xml
+---
+{
+    people: {
+        person: payload map ((item, index) -> {
+            "id": item.id,
+            "name": item.name,
+            "age": item.age
+
+        })
+        }   
+}
+
+output
+----------------------
+<?xml version='1.0' encoding='UTF-8'?>
+<people>
+  <person>
+    <id>1</id>
+    <name>John</name>
+    <age>30</age>
+  </person>
+  <person>
+    <id>2</id>
+    <name>Jane</name>
+    <age>25</age>
+  </person>
+</people>
+
+
+
+
+
+---------------------------------
+2.  XML to JSON 
+
+<book>
+    <title>DataWeave Essentials</title>
+    <author>
+        <firstName>Jane</firstName>
+        <lastName>Smith</lastName>
+    </author>
+    <price currency="USD">39.99</price>
+</book>
+
+
+script
+----------------------
+%dw 2.0
+output application/json
+---
+{
+    book: {
+        title: payload.book.title,
+        author: {
+            firstname: payload.book.author,
+            price: {
+                value: payload.book.price,
+                 currency: payload.book.price.@currency
+            }
+
+        }
+        }
+}
+
+
+
+
+output
+--------------------
+{
+  "book": {
+    "title": "DataWeave Essentials",
+    "author": {
+      "firstname": {
+        "firstName": "Jane",
+        "lastName": "Smith"
+      },
+      "price": {
+        "value": "39.99",
+        "currency": "USD"
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
