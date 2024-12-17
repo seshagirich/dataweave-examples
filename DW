@@ -103,11 +103,177 @@ output
 }
 
 
+==============================2==========================
+map 
+
+input
+
+
+[
+    {
+        "id": 1,
+        "name": "John Doe",
+        "department": "Engineering"
+    },
+    {
+        "id": 2,
+        "name": "Jane Smith",
+        "department": "HR"
+    },
+    {
+        "id": 3,
+        "name": "Sam Wilson",
+        "department": "Marketing"
+    }
+]
+
+output --------------------
+
+
+[
+  {
+    "employee": 1,
+    "fullname": "John Doe",
+    "dept": "Engineering"
+  },
+  {
+    "employee": 2,
+    "fullname": "Jane Smith",
+    "dept": "HR"
+  },
+  {
+    "employee": 3,
+    "fullname": "Sam Wilson",
+    "dept": "Marketing"
+  }
+]
+
+
+script  --------------
+
+%dw 2.0
+output application/json
+---
+payload map ((item) -> {
+    "employee": item.id,
+    "fullname": item.name,
+    "dept": item.department
+})
+
+
+====================== 3 ========================
+json to xml using
+
+input 
+
+{
+  "productId": 404,
+  "productName": "Smartwatch",
+  "quantity": 50,
+  "price": 199.99
+}
+
+
+output -------------------
+
+<?xml version='1.0' encoding='UTF-8'?>
+<product>
+  <productId>404</productId>
+  <productName>Smartwatch</productName>
+  <quantity>50</quantity>
+  <price>199.99</price>
+</product>
+
+script-----------------------
+%dw 2.0
+output application/xml
+---
+{
+    product: {
+        productId: payload.productId,
+        productName: payload.productName,
+        quantity: payload.quantity,
+        price: payload.price
+    }
+}
 
 
 
+====================4======================
+json to xml 
+
+
+input --------------
+{
+  "customerId": 202,
+  "firstName": "Alice",
+  "lastName": "Johnson",
+  "email": "alice.johnson@example.com"
+}
+
+output-----------------
+
+<?xml version="1.0" encoding="UTF-8"?>
+<customer>
+  <customerId>202</customerId>
+  <firstName>Alice</firstName>
+  <lastName>Johnson</lastName>
+  <email>alice.johnson@example.com</email>
+</customer>
+
+
+script--------------
+
+%dw 2.0
+output application/xml
+---
+{
+  customer: {
+    customerId: payload.customerId,
+    firstName: payload.firstName,
+    lastName: payload.lastName,
+    email: payload.email
+  }
+}
 
 
 
+================  5=============
 
 
+json to xml 
+
+
+input ----------------
+
+{
+  "bookId": 112,
+  "title": "The Great Gatsby",
+  "author": "F. Scott Fitzgerald",
+  "price": 10.99
+}
+
+output-------------------
+
+<?xml version='1.0' encoding='UTF-8'?>
+<book>
+  <bookId>112</bookId>
+  <title>The Great Gatsby</title>
+  <author>F. Scott Fitzgerald</author>
+  <price>10.99</price>
+</book>
+
+
+script---------------
+
+%dw 2.0
+output application/xml
+---
+{
+    book: {
+        bookId: payload.bookId,
+        title: payload.title,
+        author: payload.author,
+        price: payload.price
+    }
+}
