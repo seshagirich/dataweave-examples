@@ -1,3 +1,8 @@
+
+map:
+
+A DataWeave function that transforms each element in an array and returns a new array.
+
 input;
 [
   {
